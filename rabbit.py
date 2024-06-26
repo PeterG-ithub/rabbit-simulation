@@ -9,16 +9,26 @@ class Rabbit:
         self.energy = data['energy']
         self.state = None
 
-    def eat(self, calories):
+    def eat(self, calories):  # Spend a little amount of energy to gain calories
         self.calories += calories
 
     def grow(self):  # Grow base on excess calories when sleeping
-        pass
+        growth_rate = 500  # Calories needed to grow 1 gram
+        growth_weight = 1 / growth_rate
+        self.weight += growth_weight
+        self.calories -= growth_rate
 
-    def sleep(self):  # Increase energy 
-        pass
+    def sleep(self):  # Increase energy levels of rabbit
+        self.convert_calories_to_energy()
+        self.grow()
 
+    def convert_calories_to_enery(self, calories):
+        conversation_rate = .3
+        energy_converted = calories * conversation_rate
+        self.calories -= calories
+        self.energy += energy_converted
 
+        
 with open('rabbit_data.json', 'r') as file:
     data = json.load(file)
 
