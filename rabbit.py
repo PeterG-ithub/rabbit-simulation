@@ -21,6 +21,13 @@ class Rabbit:
             'upper_calories': 2000  # upper threshold for calories
         }
 
+    def update_chance_eating(self):
+        a = self.chances_thresholds['lower_chance_eating']
+        b = self.chances_thresholds['upper_chance_eating']
+        t = (self.calories - self.thresholds['lower_calories']) / (
+            self.thresholds['upper_calories'] - self.thresholds['lower_calories'])
+        self.chances['eating'] = lerp(a, b, t)
+
     def eat(self, calories):  # Spend a little amount of energy to gain calories
         self.calories += calories
 
@@ -40,7 +47,7 @@ class Rabbit:
         self.calories -= calories
         self.energy += energy_converted
 
-        
+
 with open('rabbit_data.json', 'r') as file:
     data = json.load(file)
 
