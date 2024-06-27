@@ -8,6 +8,15 @@ class Rabbit:
         self.calories = data['calories']
         self.energy = data['energy']
         self.state = None
+        self.chances = {
+            'eating': 0.0  # chances of eating
+        }
+
+        self.thresholds = {
+            'upper_calories': 500,  # lower threshold for calories
+            'lower_calories': 2000  # upper threshold for calories
+        }
+
 
     def eat(self, calories):  # Spend a little amount of energy to gain calories
         self.calories += calories
