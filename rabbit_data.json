@@ -2,5 +2,16 @@
     "age" : 0,
     "weight": 100,
     "calories": 1000,
-    "energy": 100
+    "energy": 100,
+    "chances": {
+        "eating": 0.5
+    },
+    "chances_threshold": {
+        "lower_chance_eating": 0.2,
+        "upper_chance_eating": 0.9
+    },
+    "threshold": {
+        "lower_calories": 500,
+        "upper_calories": 2000
+    }
 }

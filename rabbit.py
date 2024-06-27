@@ -10,15 +10,15 @@ class Rabbit:
         self.energy = data['energy']
         self.state = None
         self.chances = {
-            'eating': 0.5,  # chances of eating
+            'eating': data['chances']['eating'],  # chances of eating
         }
         self.chances_thresholds = {
-            'lower_chance_eating': 0.2,
-            'upper_chance_eating': 0.9
+            'lower_chance_eating': data['chances_threshold']['lower_chance_eating'],
+            'upper_chance_eating': data['chances_threshold']['upper_chance_eating'],  
         }
         self.thresholds = {
-            'lower_calories': 500,  # lower threshold for calories
-            'upper_calories': 2000  # upper threshold for calories
+            'lower_calories': data['threshold']['lower_calories'],  # lower threshold for calories
+            'upper_calories': data['threshold']['upper_calories'],  # upper threshold for calories
         }
 
     def update_chance_eating(self):
@@ -61,4 +61,13 @@ def test_rabbit_creation():
     print(f'Rabbit state: {rabbit.state}')
 
 
-test_rabbit_creation()
+def test_update_chances_eating():
+    rabbit = Rabbit(data)
+    rabbit.calories = 580
+    print(f'Rabbit chance of eating before: {rabbit.chances["eating"]}')
+    rabbit.update_chance_eating()
+    print(f'Rabbit chance of eating after: {rabbit.chances["eating"]}')
+
+
+# test_rabbit_creation()
+test_update_chances_eating()
