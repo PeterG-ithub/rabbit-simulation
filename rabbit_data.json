@@ -11,14 +11,14 @@
         "upper": 95,
         "lower": 10
     },
-    "chances": {
-        "eating": 0.5,
-        "sleeping": 0.5
+    "eating": {
+        "value": 0.5,
+        "upper": 0.9,
+        "lower": 0.1
     },
-    "chances_threshold": {
-        "lower_chance_eating": 0.2,
-        "upper_chance_eating": 0.9,
-        "lower_chance_sleeping": 0.2,
-        "upper_chance_sleeping": 0.9
+    "sleeping": {
+        "value": 0.5,
+        "upper": 0.8,
+        "lower": 0.2
     }
 }

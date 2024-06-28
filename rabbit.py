@@ -11,16 +11,9 @@ class Rabbit:
         self.calories = Attribute('calories', data['calories'])
         self.energy = Attribute('energy', data['energy'])
         self.state = None
-        self.chances = {
-            'eating': data['chances']['eating'],  # chances of eating
-            'sleeping': data['chances']['sleeping']
-        }
-        self.chances_thresholds = {
-            'lower_chance_eating': data['chances_threshold']['lower_chance_eating'],
-            'upper_chance_eating': data['chances_threshold']['upper_chance_eating'],
-            'lower_chance_sleeping': data['chances_threshold']['lower_chance_sleeping'],
-            'upper_chance_sleeping': data['chances_threshold']['upper_chance_sleeping'],
-        }
+        # Chances
+        self.eating = Chance('eating', data['eating'])
+        self.sleeping = Chance('sleeping', data['sleeping'])
 
     def update(self):
         self.update_chance_eating()
@@ -29,11 +22,11 @@ class Rabbit:
         self.update()
 
     def update_chance_eating(self):
-        a = self.chances_thresholds['lower_chance_eating']
-        b = self.chances_thresholds['upper_chance_eating']
+        a = self.eating.lower
+        b = self.eating.upper
         t = (self.calories.value - self.calories.lower) / (
             self.calories.upper - self.calories.lower)
-        self.chances['eating'] = lerp(a, b, t)
+        self.eating.value = lerp(a, b, t)
 
     def eat(self, calories):  # Spend a little amount of energy to gain calories
         self.calories += calories
@@ -71,9 +64,9 @@ def test_rabbit_creation():
 def test_update_chances_eating():
     rabbit = Rabbit(data)
     rabbit.calories.value = 580
-    print(f'Rabbit chance of eating before: {rabbit.chances["eating"]}')
+    print(f'Rabbit chance of eating before: {rabbit.eating.value}')
     rabbit.update_chance_eating()
-    print(f'Rabbit chance of eating after: {rabbit.chances["eating"]}')
+    print(f'Rabbit chance of eating after: {rabbit.eating.value}')
 
 
 # test_rabbit_creation()
