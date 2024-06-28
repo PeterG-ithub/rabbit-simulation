@@ -1,8 +1,16 @@
 {
     "age" : 0,
     "weight": 100,
-    "calories": 1000,
-    "energy": 100,
+    "calories": {
+        "value": 1000,
+        "upper": 2000,
+        "lower": 500
+    },
+    "energy": {
+        "value": 100,
+        "upper": 95,
+        "lower": 10
+    },
     "chances": {
         "eating": 0.5,
         "sleeping": 0.5
@@ -12,11 +20,5 @@
         "upper_chance_eating": 0.9,
         "lower_chance_sleeping": 0.2,
         "upper_chance_sleeping": 0.9
-    },
-    "threshold": {
-        "lower_calories": 500,
-        "upper_calories": 2000,
-        "lower_energy": 5,
-        "upper_energy": 95
     }
 }
