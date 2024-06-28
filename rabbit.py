@@ -21,6 +21,12 @@ class Rabbit:
             'upper_calories': data['threshold']['upper_calories'],  # upper threshold for calories
         }
 
+    def update(self):
+        self.update_chance_eating()
+
+    def update_state(self):
+        self.update()
+
     def update_chance_eating(self):
         a = self.chances_thresholds['lower_chance_eating']
         b = self.chances_thresholds['upper_chance_eating']
