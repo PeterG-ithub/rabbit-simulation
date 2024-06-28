@@ -11,14 +11,19 @@ class Rabbit:
         self.state = None
         self.chances = {
             'eating': data['chances']['eating'],  # chances of eating
+            'sleeping': data['chances']['sleeping']
         }
         self.chances_thresholds = {
             'lower_chance_eating': data['chances_threshold']['lower_chance_eating'],
-            'upper_chance_eating': data['chances_threshold']['upper_chance_eating'],  
+            'upper_chance_eating': data['chances_threshold']['upper_chance_eating'],
+            'lower_chance_sleeping': data['chances_threshold']['lower_chance_sleeping'],
+            'upper_chance_sleeping': data['chances_threshold']['upper_chance_sleeping'],
         }
         self.thresholds = {
             'lower_calories': data['threshold']['lower_calories'],  # lower threshold for calories
             'upper_calories': data['threshold']['upper_calories'],  # upper threshold for calories
+            'lower_energy': data['threshold']['lower_energy'],  # lower threshold for energy
+            'upper_energy': data['threshold']['upper_energy'],  # upper threshold for energy
         }
 
     def update(self):
