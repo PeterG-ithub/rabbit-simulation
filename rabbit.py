@@ -2,7 +2,7 @@ import json
 from util import lerp
 from attribute import Attribute
 from chance import Chance
-
+import random
 
 class Rabbit:
     def __init__(self, data) -> None:
@@ -20,6 +20,14 @@ class Rabbit:
 
     def update_state(self):
         self.update()
+        cumulative_chance = self.eating.value + self.sleeping.value
+        number = random.random() * cumulative_chance
+        if number < self.eating.value:
+            self.state = "eating"
+            self.eat(200)
+        else:
+            self.state = "sleeping"
+            self.sleep()
 
     def update_chance_eating(self):
         a = self.eating.lower
@@ -38,7 +46,7 @@ class Rabbit:
         self.calories -= growth_rate
 
     def sleep(self):  # Increase energy levels of rabbit
-        self.convert_calories_to_energy()
+        self.convert_calories_to_energy(300)
         self.grow()
 
     def convert_calories_to_enery(self, calories):
